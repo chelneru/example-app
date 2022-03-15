@@ -24,10 +24,8 @@ class ProductService
         })->get();
     }
 
-    public function AddTranslationToProduct() : Collection
+    public function AddTranslationToProduct($product, $translation) : Collection
     {
-        return Product::whereHas('categories', function (Builder $query) use ($category_name) {
-            $query->where('name', '=', $category_name);
-        })->get();
+        return $product->translations()->save($translation);
     }
 }
